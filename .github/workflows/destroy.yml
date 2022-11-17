@@ -38,8 +38,8 @@ jobs:
           key = "${{ secrets.LICENCEPLATE }}/${{ env.environment }}/serverless-app.tfstate"
           dynamodb_table = "terraform-remote-state-lock-${{ secrets.LICENCEPLATE }}"
           EOF
-          terraform init -backend-config=backend.hcl
-          terraform destroy -auto-approve
+          terraform init -backend-config=backend.hcl -input=false
+          terraform destroy -auto-approve -input=false
 
       - name: destroying front-end
         run: |
@@ -49,5 +49,5 @@ jobs:
           key = "${{ secrets.LICENCEPLATE }}/${{ env.environment }}/serverless-app.tfstate"
           dynamodb_table = "terraform-remote-state-lock-${{ secrets.LICENCEPLATE }}"
           EOF
-          terraform init -backend-config=backend.hcl
-          terraform destroy -auto-approve
+          terraform init -backend-config=backend.hcl -input=false
+          terraform destroy -auto-approve -input=false
