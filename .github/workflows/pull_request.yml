@@ -50,6 +50,3 @@ jobs:
           cd src/ui
           npm install
           npm run build
-        env:
-          # Use a fake API URL for the build
-          REACT_APP_API_URL: http://localhost:3000
