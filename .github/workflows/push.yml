@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: dev
-      url: ${{ steps.tf-outputs.outputs.API_GW_URL }}
+      url: ${{ steps.tf-outputs.outputs.CF_DOMAIN }}
 
     steps:
       - name: checkout the repo and building the Backend
@@ -50,6 +50,7 @@ jobs:
         run: |
           terraform output -json > outputs.json
           echo "S3_BUCKET_ARN=$(jq -r .s3_bucket_arn.value outputs.json)" >> $GITHUB_ENV
+          echo "CF_DOMAIN=$(jq -r .cloudfront.value.domain_name outputs.json)" >> $GITHUB_ENV
           echo "CF_DISTRIBUTION_ID=$(jq -r .cloudfront.value.distribution_id outputs.json)" >> $GITHUB_ENV
           echo "API_GW_URL=$(jq -r .apigw_url.value outputs.json)" >> $GITHUB_ENV
         working-directory: src/terraform
