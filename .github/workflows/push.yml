@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: dev
-      url: "https://${{ steps.tf-outputs.outputs.CF_DOMAIN }}"
 
     steps:
       - name: checkout the repo and building the Backend
@@ -55,7 +54,7 @@ jobs:
           echo "API_GW_URL=$(jq -r .apigw_url.value outputs.json)" >> $GITHUB_ENV
         working-directory: src/terraform
 
-      - name: Build the front-end
+      - name: Build and deploy the front-end
         run: |
           cd src/ui
           echo "REACT_APP_API_BASE_URL=$API_GW_URL" > .env
