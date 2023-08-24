@@ -11,7 +11,7 @@ This repository use [Github OpenID Connect](https://docs.github.com/en/actions/d
 
 ![GitHub OIDC Architecture Diagram](resources/GitHub-OIDC_arch.png "GitHub OIDC Architecture Diagram")
 
-## GitHub Setup
+## How to use this repository to deploy your own app
 
 - Fork this repo
 - Enable github actions
