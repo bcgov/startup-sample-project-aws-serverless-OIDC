@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: dev
-      url: ${{ steps.tf-outputs.outputs.CF_DOMAIN }}
+      url: "https://${{ steps.tf-outputs.outputs.CF_DOMAIN }}"
 
     steps:
       - name: checkout the repo and building the Backend
@@ -58,8 +58,8 @@ jobs:
       - name: Build the front-end
         run: |
           cd src/ui
-          npm install
           echo "REACT_APP_API_BASE_URL=$API_GW_URL" > .env
+          npm install
           npm run build
           aws s3 sync --delete ./build s3://$(echo "$S3_BUCKET_ARN" | cut -d: -f6)
           aws cloudfront create-invalidation --distribution-id $CF_DISTRIBUTION_ID --paths "/*"
