@@ -5,7 +5,7 @@ This repository use [Github OpenID Connect](https://docs.github.com/en/actions/d
 
 ## Applicatition Architecture
 
-![Serverless Architecture](./resources/serverless-architecture.png){width=50%}.
+![Serverless Architecture](./resources/serverless-architecture.png).
 
 ## How GitHub Actions authenticates with AWS
 
