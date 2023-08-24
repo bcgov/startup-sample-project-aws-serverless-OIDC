@@ -62,5 +62,6 @@ jobs:
           npm run build
           aws s3 sync --delete ./build s3://$(echo "$S3_BUCKET_ARN" | cut -d: -f6)
           aws cloudfront create-invalidation --distribution-id $CF_DISTRIBUTION_ID --paths "/*"
+          echo "API URL: $REACT_APP_API_BASE_URL=$API_GW_URL"
         env:
           REACT_APP_API_BASE_URL: ${{ steps.tf-outputs.outputs.API_GW_URL }}
