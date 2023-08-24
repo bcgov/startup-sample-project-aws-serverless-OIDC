@@ -11,12 +11,13 @@ This repository use [Github OpenID Connect](https://docs.github.com/en/actions/d
 
 ![GitHub OIDC Architecture Diagram](resources/GitHub-OIDC_arch.png "GitHub OIDC Architecture Diagram")
 
-## Setup
+## GitHub Setup
 
 - Fork this repo
 - Enable github actions
+- configure github variables
 
-#### Github Variables
+### Github Variables
 
 The GitHub actions require the following github variables:
 
@@ -56,7 +57,7 @@ The GitHub actions require the following github variables:
 
 - Once the app has been built, you should be able to log into AWS with your IDIR account (2FA may be implemented). Once logged in AWS search for Cloudfront and then click on Distributions (If you can not see it click the hamburger on the top left corner). The Distributions dashboard shows the Domain name url, you can use that url to open a browser session and load the app.
 
-#### Pipeline
+### GitHub Action Workflows
 
 The github actions will trigger on a pull request creation and merge.
 
