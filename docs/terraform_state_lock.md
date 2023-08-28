@@ -1,4 +1,4 @@
-# Terraform State Locking Issue and How to Unlock State
+# Terraform State Locking and How to Unlock State
 
 ## Problem Description
 
