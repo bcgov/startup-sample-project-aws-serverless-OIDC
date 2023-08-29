@@ -32,7 +32,7 @@ resource "aws_s3_bucket_policy" "site_policy" {
 
 resource "aws_cloudfront_distribution" "s3_distribution" {
   enabled             = true
-  is_ipv6_enabled     = true
+  is_ipv6_enabled     = false
   comment             = "Distribution for ${var.app_name} site."
   default_root_object = "index.html"
 
