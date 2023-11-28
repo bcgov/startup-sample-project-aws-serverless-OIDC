@@ -5,7 +5,7 @@ on:
     branches: [main, test, dev]
 
 env:
-  TF_VERSION: 1.5.6
+  TF_VERSION: 1.5.7
 
 permissions:
   id-token: write # This is required for requesting the JWT and AWS credentials using AssumeRoleWithWebIdentity
