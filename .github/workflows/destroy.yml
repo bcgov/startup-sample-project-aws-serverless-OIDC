@@ -34,7 +34,7 @@ jobs:
           cd src/terraform
           cat <<EOF > backend.hcl
           bucket = "${{ vars.S3_BACKEND_NAME }}"
-          key = "${{ vars.LICENSEPLATE }}/${{ env.environment }}/serverless-sample-app.tfstate"
+          key = "${{ vars.LICENSEPLATE }}/${{ inputs.env }}/serverless-sample-app.tfstate"
           dynamodb_table = "${{ vars.DYNAMO_DB_TABLE_NAME }}"
           EOF
 
