@@ -57,11 +57,24 @@ The GitHub actions require the following github variables:
 
 - Once the app has been built, you should be able to log into AWS with your IDIR account (2FA may be implemented). Once logged in AWS search for Cloudfront and then click on Distributions (If you can not see it click the hamburger on the top left corner). The Distributions dashboard shows the Domain name url, you can use that url to open a browser session and load the app.
 
-### GitHub Action Workflows
+## Github Action Workflows
 
-The github actions will trigger on a pull request creation and merge.
+### Deploy
 
-- Creating a pull request will run a `terraform plan` and outline everything that will be deployed into your AWS accounts, but will not create anything. Please review the plan to verify that all is correct.
-- Merging into `main` will run a `terraform apply` and your AWS assets will be deployed in the `dev` accounts.
+[.github/workflows/deploy.yml](.github/workflows/deploy.yml)
 
-NOTE: make sure you are creating pull requests/ merging within your fork
+The deploy workflow is triggered by manual dispatch. It will deploy the selected branch to the selected environment.
+
+>NOTE: For this sample application we chose a manual deploy workflow to keep the cost down. In a real world scenario you may want to use an automated workflow.
+
+### Destroy
+
+[.github/workflows/destroy.yml](.github/workflows/destroy.yml)
+
+The destroy workflow is triggered by manual dispatch. It will destroy the selected branch from the selected environment.
+
+### Pull Request
+
+[.github/workflows/pull_request.yml](.github/workflows/pull_request.yml)
+
+The pull request workflow is triggered by pull request to any of the `dev`, `test`, or `main` branches. It will run a `terraform plan` and build the frontend.

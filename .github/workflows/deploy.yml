@@ -1,22 +1,25 @@
-name: Deploy on Push
+name: Deploy
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
+    inputs:
+      env:
+        description: select the environment
+        type: environment
+        required: true
 
 env:
-  TF_VERSION: 1.5.6
-  environment: dev
+  TF_VERSION: 1.5.7
+  environment: ${{ inputs.env }}
 
 permissions:
   id-token: write # This is required for requesting the JWT and AWS credentials using AssumeRoleWithWebIdentity
   contents: read # This is required for actions/checkout
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    environment:
-      name: dev
+    environment: ${{ inputs.env }}
 
     steps:
       - name: checkout the repo and building the Backend

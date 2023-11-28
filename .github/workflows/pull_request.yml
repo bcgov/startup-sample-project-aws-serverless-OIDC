@@ -1,23 +1,33 @@
 name: Pull Request
 
 on:
-  #workflow_dispatch:
   pull_request:
-    branches: [main]
+    branches: [main, test, dev]
 
 env:
   TF_VERSION: 1.5.6
-  environment: dev
 
 permissions:
   id-token: write # This is required for requesting the JWT and AWS credentials using AssumeRoleWithWebIdentity
   contents: read # This is required for actions/checkout
 
 jobs:
-  build:
+  env_selector:
     runs-on: ubuntu-latest
-    environment:
-      name: dev
+    steps:
+      - name: env selector
+        id: identify
+        run: |
+          if [ ${GITHUB_BASE_REF} = "main" ];then export github_env='prod'; else export github_env=${GITHUB_BASE_REF}; fi
+          echo "name=${github_env}" >> "$GITHUB_ENV"
+
+    outputs:
+      github_env: ${{ env.name }}
+
+  build_and_plan:
+    needs: env_selector
+    environment: ${{ needs.env_selector.outputs.github_env }}
+    runs-on: ubuntu-latest
 
     steps:
       - name: checkout the repo and building the Backend
